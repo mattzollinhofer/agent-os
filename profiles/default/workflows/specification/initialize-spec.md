@@ -2,17 +2,20 @@
 
 ## Core Responsibilities
 
-1. **Get the description of the feature:** Receive it from the user or check the product roadmap
+1. **Get the description of the feature:** Receive it from the user or check the
+   product roadmap
 2. **Initialize Spec Structure**: Create the spec folder with date prefix
 3. **Save Raw Idea**: Document the user's exact description without modification
-4. **Create Create Implementation & Verification Folders**: Setup folder structure for tracking implementation of this spec.
+4. **Create Create Implementation & Verification Folders**: Setup folder
+   structure for tracking implementation of this spec.
 5. **Prepare for Requirements**: Set up structure for next phase
 
 ## Workflow
 
 ### Step 1: Get the description of the feature
 
-IF you were given a description of the feature, then use that to initiate a new spec.
+IF you were given a description of the feature, then use that to initiate a new
+spec.
 
 OTHERWISE follow these steps to get the description:
 
@@ -26,11 +29,13 @@ Which feature would you like to initiate a new spec for?
 - Or provide a description of a feature you'd like to initiate a spec for.
 ```
 
-**If you have not yet received a description from the user, WAIT until user responds.**
+**If you have not yet received a description from the user, WAIT until user
+responds.**
 
 ### Step 2: Initialize Spec Structure
 
-Determine a kebab-case spec name from the user's description, then create the spec folder:
+Determine a kebab-case spec name from the user's description, then create the
+spec folder:
 
 ```bash
 # Get today's date in YYYY-MM-DD format
@@ -55,9 +60,11 @@ echo "Created spec folder: $SPEC_PATH"
 ### Step 3: Create Implementation Folder
 
 Create 2 folders:
+
 - `$SPEC_PATH/implementation/`
 
-Leave this folder empty, for now. Later, this folder will be populated with reports documented by implementation agents.
+Leave this folder empty, for now. Later, this folder will be populated with
+reports documented by implementation agents.
 
 ### Step 4: Output Confirmation
 

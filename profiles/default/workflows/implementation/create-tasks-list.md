@@ -2,32 +2,41 @@
 
 ## Core Responsibilities
 
-1. **Analyze spec and requirements**: Read and analyze the spec.md and/or requirements.md to inform the tasks list you will create.
-2. **Plan task execution order**: Break the requirements into a list of tasks in an order that takes their dependencies into account.
-3. **Group tasks by specialization**: Group tasks that require the same skill or stack specialization together (backend, api, ui design, etc.)
-4. **Create Tasks list**: Create the markdown tasks list broken into groups with sub-tasks.
+1. **Analyze spec and requirements**: Read and analyze the spec.md and/or
+   requirements.md to inform the tasks list you will create.
+2. **Plan task execution order**: Break the requirements into a list of tasks in
+   an order that takes their dependencies into account.
+3. **Group tasks by specialization**: Group tasks that require the same skill or
+   stack specialization together (backend, api, ui design, etc.)
+4. **Create Tasks list**: Create the markdown tasks list broken into groups with
+   sub-tasks.
 
 ## Workflow
 
 ### Step 1: Analyze Spec & Requirements
 
-Read each of these files (whichever are available) and analyze them to understand the requirements for this feature implementation:
+Read each of these files (whichever are available) and analyze them to
+understand the requirements for this feature implementation:
+
 - `agent-os/specs/[this-spec]/spec.md`
 - `agent-os/specs/[this-spec]/planning/requirements.md`
 
-Use your learnings to inform the tasks list and groupings you will create in the next step.
-
+Use your learnings to inform the tasks list and groupings you will create in the
+next step.
 
 ### Step 2: Create Tasks Breakdown
 
 Generate `agent-os/specs/[current-spec]/tasks.md`.
 
-**Important**: The exact tasks, task groups, and organization will vary based on the feature's specific requirements. The following is an example format - adapt the content of the tasks list to match what THIS feature actually needs.
+**Important**: The exact tasks, task groups, and organization will vary based on
+the feature's specific requirements. The following is an example format - adapt
+the content of the tasks list to match what THIS feature actually needs.
 
 ```markdown
 # Task Breakdown: [Feature Name]
 
 ## Overview
+
 Total Tasks: [count]
 
 ## Task List
@@ -35,12 +44,14 @@ Total Tasks: [count]
 ### Database Layer
 
 #### Task Group 1: Data Models and Migrations
+
 **Dependencies:** None
 
 - [ ] 1.0 Complete database layer
   - [ ] 1.1 Write 2-8 focused tests for [Model] functionality
     - Limit to 2-8 highly focused tests maximum
-    - Test only critical model behaviors (e.g., primary validation, key association, core method)
+    - Test only critical model behaviors (e.g., primary validation, key
+      association, core method)
     - Skip exhaustive coverage of all methods and edge cases
   - [ ] 1.2 Create [Model] with validations
     - Fields: [list]
@@ -58,6 +69,7 @@ Total Tasks: [count]
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 2-8 tests written in 1.1 pass
 - Models pass validation tests
 - Migrations run successfully
@@ -66,12 +78,14 @@ Total Tasks: [count]
 ### API Layer
 
 #### Task Group 2: API Endpoints
+
 **Dependencies:** Task Group 1
 
 - [ ] 2.0 Complete API layer
   - [ ] 2.1 Write 2-8 focused tests for API endpoints
     - Limit to 2-8 highly focused tests maximum
-    - Test only critical controller actions (e.g., primary CRUD operation, auth check, key error case)
+    - Test only critical controller actions (e.g., primary CRUD operation, auth
+      check, key error case)
     - Skip exhaustive testing of all actions and scenarios
   - [ ] 2.2 Create [resource] controller
     - Actions: index, show, create, update, destroy
@@ -89,6 +103,7 @@ Total Tasks: [count]
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 2-8 tests written in 2.1 pass
 - All CRUD operations work
 - Proper authorization enforced
@@ -97,12 +112,14 @@ Total Tasks: [count]
 ### Frontend Components
 
 #### Task Group 3: UI Design
+
 **Dependencies:** Task Group 2
 
 - [ ] 3.0 Complete UI components
   - [ ] 3.1 Write 2-8 focused tests for UI components
     - Limit to 2-8 highly focused tests maximum
-    - Test only critical component behaviors (e.g., primary user interaction, key form submission, main rendering case)
+    - Test only critical component behaviors (e.g., primary user interaction,
+      key form submission, main rendering case)
     - Skip exhaustive testing of all component states and interactions
   - [ ] 3.2 Create [Component] component
     - Reuse: [existing component] as base
@@ -133,6 +150,7 @@ Total Tasks: [count]
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 2-8 tests written in 3.1 pass
 - Components render correctly
 - Forms validate and submit
@@ -141,6 +159,7 @@ Total Tasks: [count]
 ### Testing
 
 #### Task Group 4: Test Review & Gap Analysis
+
 **Dependencies:** Task Groups 1-3
 
 - [ ] 4.0 Review existing tests and fill critical gaps only
@@ -158,14 +177,17 @@ Total Tasks: [count]
     - Add maximum of 10 new tests to fill identified critical gaps
     - Focus on integration points and end-to-end workflows
     - Do NOT write comprehensive coverage for all scenarios
-    - Skip edge cases, performance tests, and accessibility tests unless business-critical
+    - Skip edge cases, performance tests, and accessibility tests unless
+      business-critical
   - [ ] 4.4 Run feature-specific tests only
-    - Run ONLY tests related to this spec's feature (tests from 1.1, 2.1, 3.1, and 4.3)
+    - Run ONLY tests related to this spec's feature (tests from 1.1, 2.1, 3.1,
+      and 4.3)
     - Expected total: approximately 16-34 tests maximum
     - Do NOT run the entire application test suite
     - Verify critical workflows pass
 
 **Acceptance Criteria:**
+
 - All feature-specific tests pass (approximately 16-34 tests total)
 - Critical user workflows for this feature are covered
 - No more than 10 additional tests added when filling in testing gaps
@@ -174,26 +196,36 @@ Total Tasks: [count]
 ## Execution Order
 
 Recommended implementation sequence:
+
 1. Database Layer (Task Group 1)
 2. API Layer (Task Group 2)
 3. Frontend Design (Task Group 3)
 4. Test Review & Gap Analysis (Task Group 4)
 ```
 
-**Note**: Adapt this structure based on the actual feature requirements. Some features may need:
-- Different task groups (e.g., email notifications, payment processing, data migration)
+**Note**: Adapt this structure based on the actual feature requirements. Some
+features may need:
+
+- Different task groups (e.g., email notifications, payment processing, data
+  migration)
 - Different execution order based on dependencies
 - More or fewer sub-tasks per group
 
 ## Important Constraints
 
 - **Create tasks that are specific and verifiable**
-- **Group related tasks:** For example, group back-end engineering tasks together and front-end UI tasks together.
+- **Group related tasks:** For example, group back-end engineering tasks
+  together and front-end UI tasks together.
 - **Limit test writing during development**:
   - Each task group (1-3) should write 2-8 focused tests maximum
   - Tests should cover only critical behaviors, not exhaustive coverage
-  - Test verification should run ONLY the newly written tests, not the entire suite
-  - If there is a dedicated test coverage group for filling in gaps in test coverage, this group should add only a maximum of 10 additional tests IF NECESSARY to fill critical gaps
-- **Use a focused test-driven approach** where each task group starts with writing 2-8 tests (x.1 sub-task) and ends with running ONLY those tests (final sub-task)
+  - Test verification should run ONLY the newly written tests, not the entire
+    suite
+  - If there is a dedicated test coverage group for filling in gaps in test
+    coverage, this group should add only a maximum of 10 additional tests IF
+    NECESSARY to fill critical gaps
+- **Use a focused test-driven approach** where each task group starts with
+  writing 2-8 tests (x.1 sub-task) and ends with running ONLY those tests (final
+  sub-task)
 - **Include acceptance criteria** for each task group
 - **Reference visual assets** if visuals are available
