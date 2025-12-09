@@ -1,11 +1,15 @@
 ---
-name: {{standard_name_humanized_capitalized}}
-description: Your approach to handling {{standard_name_humanized}}. Use this skill when working on files where {{standard_name_humanized}} comes into play.
+name: { { standard_name_humanized_capitalized } }
+description:
+  Your approach to handling {{standard_name_humanized}}. Use this skill when
+  working on files where {{standard_name_humanized}} comes into play.
 ---
 
 # {{standard_name_humanized_capitalized}}
 
-This Skill provides Claude Code with specific guidance on how to adhere to coding standards as they relate to how it should handle {{standard_name_humanized}}.
+This Skill provides Claude Code with specific guidance on how to adhere to
+coding standards as they relate to how it should handle
+{{standard_name_humanized}}.
 
 ## Instructions
 

@@ -1,4 +1,6 @@
-Now that we've implemented all tasks in tasks.md, we must run final verifications and produce a verification report using the following MULTI-PHASE workflow:
+Now that we've implemented all tasks in tasks.md, we must run final
+verifications and produce a verification report using the following MULTI-PHASE
+workflow:
 
 ## Workflow
 

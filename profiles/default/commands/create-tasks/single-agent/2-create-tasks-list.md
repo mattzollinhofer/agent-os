@@ -1,4 +1,6 @@
-Now that you have the spec.md AND/OR requirements.md, please break those down into an actionable tasks list with strategic grouping and ordering, by following these instructions:
+Now that you have the spec.md AND/OR requirements.md, please break those down
+into an actionable tasks list with strategic grouping and ordering, by following
+these instructions:
 
 {{workflows/implementation/create-tasks-list}}
 
@@ -15,9 +17,10 @@ NEXT STEP 👉 Run `/implement-tasks` (simple, effective) or `/orchestrate-tasks
 ```
 
 {{UNLESS standards_as_claude_code_skills}}
+
 ## User Standards & Preferences Compliance
 
-IMPORTANT: Ensure that the tasks list is ALIGNED and DOES NOT CONFLICT with the user's preferences and standards as detailed in the following files:
+IMPORTANT: Ensure that the tasks list is ALIGNED and DOES NOT CONFLICT with the
+user's preferences and standards as detailed in the following files:
 
-{{standards/*}}
-{{ENDUNLESS standards_as_claude_code_skills}}
+{{standards/*}} {{ENDUNLESS standards_as_claude_code_skills}}
