@@ -12,6 +12,18 @@
 6. **Save Requirements**: Document the requirements you've gathered to a single
    file named: `[spec-path]/planning/requirements.md`
 
+
+## TODO???
+### Research Codebase
+
+This is likely going to move to write-spec or something
+
+Research / analyze codebase for:
+
+- code architecture patterns
+- exisiting tests model off of or to modify for this work
+- ...
+
 ## Workflow
 
 ### Step 1: Read Initial Idea

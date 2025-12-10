@@ -4,8 +4,9 @@
 
 1. **Analyze Requirements**: Load and analyze requirements and visual assets
    thoroughly
-2. **Search for Reusable Code**: Find reusable components and patterns in
-   existing codebase
+2. **Research Codebase**: Extract patterns from this codebase
+  1. **Research Code**: Find reusable components and patterns in existing codebase
+  2. **Research Commits**: Find commits that are similar to this work.
 3. **Create Specification**: Write comprehensive specification document
 
 ## Workflow
@@ -29,18 +30,34 @@ Parse and analyze:
 - Visual mockups or screenshots (if present)
 - Any constraints or out-of-scope items mentioned
 
-### Step 2: Search for Reusable Code
+### Step 2: Research Codebase
+Before creating specifications, extract information, patterns, files, ideas,
+commits, reasoning.
 
-Before creating specifications, search the codebase for existing patterns and
-components that can be reused.
+Read @agent-os/product/technical-leaders.md to get the names of
+technical-leaders
+
+Steps:
+
+1. Search Code: Run the steps in `2.1: Search Code`
+2. Search Commits: Run the steps in `2.2: Search Commits`
+3. Output Findings
+
+#### Step 2.1: Search Code
 
 Based on the feature requirements, identify relevant keywords and search for:
 
 - Similar features or functionality
+- Similar tests that are patterns
+- Similar tests that should be modified rather than creating new tests
 - Existing UI components that match your needs
 - Models, services, or controllers with related logic
 - API patterns that could be extended
 - Database structures that could be reused
+
+Search the codebase for existing code, tests, patterns, and components that can
+be used as reference or reused completely. Prefer recent changes, patterns,
+files over older options.
 
 Use appropriate search tools and commands for the project's technology stack to
 find:
@@ -50,7 +67,37 @@ find:
 - Naming conventions used in the codebase
 - Architecture patterns already established
 
-Document your findings for use in the specification.
+Document your findings for use in the specification, expected output:
+```markdown
+[idea/pattern/concept name]
+- [@<filepath>:line number(s)] - [short 10 word or less description of value]
+- [@<filepath>:line number(s)] - [short 10 word or less description of value]
+- ...
+```
+
+#### Step 2.2: Search Commits
+
+Based on the feature requirements, identify relevant keywords and search for:
+
+- Similar features or functionality
+- Similar tests that are patterns
+- Similar tests that should be modified rather than creating new tests
+- Existing UI components that match your needs
+- Models, services, or controllers with related logic
+- API patterns that could be extended
+- Database structures that could be reused
+
+Search the git log for commits that are related to the work being done in any
+way. They may be similar in business concept, in likely technical approach, or
+other something else. Prefer recent changes, patterns, files over older options.
+Prefer commits from anyone listed in [technical-leaders].
+
+```markdown
+[idea/pattern/concept name]
+- [short commit sha:commit title] - [short 10 word or less description of value]
+- [short commit sha:commit title] - [short 10 word or less description of value]
+- etc
+```
 
 ### Step 3: Create Core Specification
 
@@ -96,14 +143,27 @@ Follow this structure exactly when creating the content of `spec.md`:
 
 [repeat for each file in the `planning/visuals` folder]
 
-## Existing Code to Leverage
+## Leverage Existing Knowledge
 
 **Code, component, or existing logic found**
 
-- [up to 5 bullets that describe what this existing code does and how it should
-  be re-used or replicated when building this spec]
+[Short description]
 
-[repeat for up to 5 existing code areas]
+[idea/pattern/concept name]
+- [@<filepath>:line number(s)] - [short 10 word or less description of value]
+   - [up to 5 bullets that describe what this existing code does and how it should
+     be re-used or replicated when building this spec]
+
+[repeat for up to 15 existing code areas]
+
+**Git Commit found**
+
+[Short description]
+
+[idea/pattern/concept name]
+- [short commit sha:commit title] - [short 10 word or less description of value]
+   - [up to 5 bullets that describe what this existing code does and how it should
+     be re-used or replicated when building this spec]
 
 ## Out of Scope
 

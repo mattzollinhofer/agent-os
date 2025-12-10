@@ -1,6 +1,8 @@
 Now that we've initiated and planned the details for a new spec, we will now
 proceed with drafting the specification document, following these instructions:
 
+Read @agent-os/specs/[this-spec]/requirements.md
+
 {{workflows/specification/write-spec}}
 
 ## Display confirmation and next step

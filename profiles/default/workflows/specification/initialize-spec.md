@@ -41,8 +41,9 @@ spec folder:
 # Get today's date in YYYY-MM-DD format
 TODAY=$(date +%Y-%m-%d)
 
-# Determine kebab-case spec name from user's description
-SPEC_NAME="[kebab-case-name]"
+# Determine kebab-case spec name from roadmap item (if available) and user's
+# description
+SPEC_NAME="[roadmap-item]-[kebab-case-name]"
 
 # Create dated folder name
 DATED_SPEC_NAME="${TODAY}-${SPEC_NAME}"
@@ -83,7 +84,7 @@ Ready for requirements research phase.
 
 ## Important Constraints
 
-- Always use dated folder names (YYYY-MM-DD-spec-name)
+- Always use dated folder names (YYYY-MM-DD-roadmap-item-spec-name)
 - Pass the exact spec path back to the orchestrator
 - Follow folder structure exactly
 - Implementation folder should be empty, for now
