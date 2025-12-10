@@ -21,7 +21,11 @@ understand the requirements for this feature implementation:
 - `agent-os/specs/[this-spec]/spec.md`
 - `agent-os/specs/[this-spec]/planning/requirements.md`
 
-Use your learnings to inform the tasks list and groupings you will create in the
+For any files specifically listed, read the WHOLE FILE, not just a portion. The
+whole file is valuable for context of work to be done, Additionally for any
+commit referenced, read the commit message and also the changes made.
+
+Use what you learned to inform the tasks list and groupings you will create in the
 next step.
 
 ### Step 2: Create Tasks Breakdown

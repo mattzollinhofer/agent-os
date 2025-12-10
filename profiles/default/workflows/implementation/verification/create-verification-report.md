@@ -6,8 +6,8 @@ The content of this report should follow this structure:
 ```markdown
 # Verification Report: [Spec Title]
 
-**Spec:** `[spec-name]` **Date:** [Current Date] **Verifier:**
-implementation-verifier **Status:** ✅ Passed | ⚠️ Passed with Issues | ❌
+**Spec:** `[spec-name]` **Date:** [Current Date] **Roadmap Item:** [roadmap-item]
+**Verifier:** implementation-verifier **Status:** ✅ Passed | ⚠️ Passed with Issues | ❌
 Failed
 
 ---

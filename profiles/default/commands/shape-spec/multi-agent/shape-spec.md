@@ -9,8 +9,9 @@ This process will follow 3 main phases, each with their own workflow steps:
 
 Process overview (details to follow)
 
-PHASE 1. Initilize spec PHASE 2. Research requirements for this spec PHASE 3.
-Inform the user that the spec has been initialized
+- PHASE 1: Initilize spec
+- PHASE 2: Research requirements for this spec
+- PHASE 3: Inform the user that the spec has been initialized
 
 Follow each of these phases and their individual workflows IN SEQUENCE:
 
@@ -23,7 +24,7 @@ Use the **spec-shaper** subagent to initialize a new spec.
 IF the user has provided a description, provide that to the spec-initializer.
 
 The spec-initializer will provide the path to the dated spec folder
-(YYYY-MM-DD-spec-name) they've created.
+(YYYY-MM-DD-roadmap-number-spec-name) they've created.
 
 ### PHASE 2: Research Requirements
 
