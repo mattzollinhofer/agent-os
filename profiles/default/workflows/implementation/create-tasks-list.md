@@ -71,8 +71,9 @@ Each slice delivers incremental user value and is tested end-to-end.
 - [ ] 1.4 Run test, observe failure or success
 - [ ] 1.5 Document result and update task list
 - [ ] 1.6 Repeat 1.3-1.5 as necessary
-- [ ] 1.7 Commit working slice
-- [ ] 1.8 Add narrower tests for edge cases (if needed)
+- [ ] 1.7 Refactor if needed (keep tests green)
+- [ ] 1.8 Commit working slice
+- [ ] 1.9 Add narrower tests for edge cases (if needed)
 
 **Acceptance Criteria:**
 - User can [do the thing this slice enables]
@@ -95,9 +96,10 @@ Each slice delivers incremental user value and is tested end-to-end.
 - [ ] 2.4 Run test, observe failure or success
 - [ ] 2.5 Document result and update task list
 - [ ] 2.6 Repeat 2.3-2.5 as necessary
-- [ ] 2.7 Run all slice tests (1 and 2) to verify no regressions
-- [ ] 2.8 Commit working slice
-- [ ] 2.9 Add narrower tests (if needed)
+- [ ] 2.7 Refactor if needed (keep tests green)
+- [ ] 2.8 Run all slice tests (1 and 2) to verify no regressions
+- [ ] 2.9 Commit working slice
+- [ ] 2.10 Add narrower tests (if needed)
 
 **Acceptance Criteria:**
 - User can [do the thing]
@@ -149,17 +151,18 @@ template tasks (1.3-1.6) get replaced with the actual iterations:
 - [x] 1.8 `expected 200 got 422` → Added permitted params
 - [x] 1.9 `Expected page to have "Test comment" but not found` → Added comment to view
 - [x] 1.10 Success ✅
-- [x] 1.11 Commit working slice
-- [ ] 1.12 Add narrower tests for edge cases (if needed)
+- [x] 1.11 Refactor: extracted comment rendering to partial
+- [x] 1.12 Commit working slice
+- [ ] 1.13 Add narrower tests for edge cases (if needed)
 
 **Acceptance Criteria:**
 - User can submit a comment from the post page
 - Comment appears in the comments list
 ```
 
-## Red-Green Cycle Guidance
+## Red-Green-Refactor Cycle Guidance
 
-The red-green cycle is the core of implementation:
+The red-green-refactor cycle is the core of implementation:
 
 1. **Run the test** - observe the failure
 2. **Make the smallest possible change** to address that specific failure
@@ -167,6 +170,8 @@ The red-green cycle is the core of implementation:
 4. **Document the iteration**: `[failure reason]` → `[change made]`
 5. **Update the task list** with this iteration as a completed task
 6. **Repeat** until test passes, then document `Success ✅`
+7. **Refactor** - clean up the code while keeping tests green
+   (see @standards/global/refactoring.md)
 
 **Important**: Each slice may take MANY iterations - this is expected and
 normal. However, if you're stuck on the **same failure** for 5-10 cycles,

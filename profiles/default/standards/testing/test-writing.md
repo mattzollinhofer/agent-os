@@ -47,7 +47,7 @@ tweaks are fine.
 - Extend existing tests to cover new functionality when it makes sense
 - Create new tests when the functionality is distinct
 
-### Red-Green Cycle
+### Red-Green-Refactor Cycle
 
 Follow the test-first cycle:
 
@@ -56,6 +56,8 @@ Follow the test-first cycle:
 3. **Make the smallest change** - address only what the failure tells you
 4. **Run the test again** - observe failure change or success
 5. **Repeat** until the test passes
+6. **Refactor** - clean up the code while keeping tests green
+   (see @standards/global/refactoring.md)
 
 ### Test Behavior, Not Implementation
 
