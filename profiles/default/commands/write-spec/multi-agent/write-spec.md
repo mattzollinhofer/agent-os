@@ -2,6 +2,8 @@
 
 You are creating a comprehensive specification for a new feature.
 
+Read @agent-os/specs/[this-spec]/planning/requirements.md
+
 Use the **spec-writer** subagent to create the specification document for this
 spec:
 
