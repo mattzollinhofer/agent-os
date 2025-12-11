@@ -2,14 +2,14 @@
 
 ## Core Responsibilities
 
-1. **Analyze spec and requirements**: Read and analyze the spec.md and/or
-   requirements.md to inform the tasks list you will create.
-2. **Plan task execution order**: Break the requirements into a list of tasks in
-   an order that takes their dependencies into account.
-3. **Group tasks by specialization**: Group tasks that require the same skill or
-   stack specialization together (backend, api, ui design, etc.)
-4. **Create Tasks list**: Create the markdown tasks list broken into groups with
-   sub-tasks.
+1. **Analyze spec and requirements**: Read and deeply understand the spec.md
+   and/or requirements.md, including all referenced files and commits.
+2. **Identify vertical slices**: Break the feature into user-facing capabilities
+   that can be built and tested end-to-end.
+3. **Order by value and dependency**: Sequence slices so each delivers
+   something working, with dependencies respected.
+4. **Create tasks list**: Generate a markdown tasks list organized by feature
+   slices, not technical layers.
 
 ## Workflow
 
@@ -21,215 +21,175 @@ understand the requirements for this feature implementation:
 - `agent-os/specs/[this-spec]/spec.md`
 - `agent-os/specs/[this-spec]/planning/requirements.md`
 
-For any files specifically listed, read the WHOLE FILE, not just a portion. The
-whole file is valuable for context of work to be done, Additionally for any
-commit referenced, read the commit message and also the changes made.
+For any files specifically listed in the spec.md or requirements.md, read the
+WHOLE FILE, not just a portion. The whole file is valuable for context of work
+to be done. Additionally, for any commit referenced, read the commit message and
+the changes made.
 
-Use what you learned to inform the tasks list and groupings you will create in the
-next step.
+Use what you learned to inform the tasks list and groupings you will create in
+the next step.
 
 ### Step 2: Create Tasks Breakdown
 
 Generate `agent-os/specs/[current-spec]/tasks.md`.
 
-**Important**: The exact tasks, task groups, and organization will vary based on
-the feature's specific requirements. The following is an example format - adapt
-the content of the tasks list to match what THIS feature actually needs.
+**Key principle**: Organize tasks by **vertical slices** (user-facing
+capabilities), NOT by technical layers. Each task group should deliver something
+complete and testable end-to-end.
+
+**Why vertical slices?**
+- Each slice delivers real user value
+- Issues surface earlier (not at the end when layers integrate)
+- Easier to adjust scope mid-feature
+- More natural for code review and testing
+
+### Initial Task Template
 
 ```markdown
 # Task Breakdown: [Feature Name]
 
 ## Overview
 
-Total Tasks: [count]
+Total Slices: [count]
+Each slice delivers incremental user value and is tested end-to-end.
 
 ## Task List
 
-### Database Layer
+### Slice 1: [Core User Capability - e.g., "User can create a comment"]
 
-#### Task Group 1: Data Models and Migrations
+**What this delivers:** [One sentence describing the user-facing outcome]
+
+**Dependencies:** None (or list prior slices)
+
+**Reference patterns:**
+- [@filepath:lines] - [what to reuse]
+- [commit:sha] - [what to learn from]
+
+- [ ] 1.1 Write integration test for happy path
+- [ ] 1.2 Run test, verify expected failure
+- [ ] 1.3 Make smallest change possible to progress
+- [ ] 1.4 Run test, observe failure or success
+- [ ] 1.5 Document result and update task list
+- [ ] 1.6 Repeat 1.3-1.5 as necessary
+- [ ] 1.7 Commit working slice
+- [ ] 1.8 Add narrower tests for edge cases (if needed)
+
+**Acceptance Criteria:**
+- User can [do the thing this slice enables]
+- Integration test passes
+
+---
+
+### Slice 2: [Next User Capability - e.g., "User can edit their comment"]
+
+**What this delivers:** [One sentence describing the user-facing outcome]
+
+**Dependencies:** Slice 1
+
+**Reference patterns:**
+- [@filepath:lines] - [what to reuse]
+
+- [ ] 2.1 Write integration test for happy path
+- [ ] 2.2 Run test, verify expected failure
+- [ ] 2.3 Make smallest change possible to progress
+- [ ] 2.4 Run test, observe failure or success
+- [ ] 2.5 Document result and update task list
+- [ ] 2.6 Repeat 2.3-2.5 as necessary
+- [ ] 2.7 Run all slice tests (1 and 2) to verify no regressions
+- [ ] 2.8 Commit working slice
+- [ ] 2.9 Add narrower tests (if needed)
+
+**Acceptance Criteria:**
+- User can [do the thing]
+- Previous slice functionality still works
+
+---
+
+### Slice N: [Final Polish / Edge Cases]
+
+**What this delivers:** Production-ready feature with edge cases handled
+
+**Dependencies:** All prior slices
+
+- [ ] N.1 Handle edge cases identified in spec
+- [ ] N.2 Add any missing error handling
+- [ ] N.3 Run all feature tests, verify everything works together
+- [ ] N.4 Final commit
+
+**Acceptance Criteria:**
+- All user workflows from spec work correctly
+- Error cases handled gracefully
+- Code follows existing patterns
+```
+
+### Example: Task List After Implementation
+
+As the agent works through a slice, the task list gets updated. The original
+template tasks (1.3-1.6) get replaced with the actual iterations:
+
+```markdown
+### Slice 1: "User can create a comment"
+
+**What this delivers:** User can write and submit a comment on a post
 
 **Dependencies:** None
 
-- [ ] 1.0 Complete database layer
-  - [ ] 1.1 Write 2-8 focused tests for [Model] functionality
-    - Limit to 2-8 highly focused tests maximum
-    - Test only critical model behaviors (e.g., primary validation, key
-      association, core method)
-    - Skip exhaustive coverage of all methods and edge cases
-  - [ ] 1.2 Create [Model] with validations
-    - Fields: [list]
-    - Validations: [list]
-    - Reuse pattern from: [existing model if applicable]
-  - [ ] 1.3 Create migration for [table]
-    - Add indexes for: [fields]
-    - Foreign keys: [relationships]
-  - [ ] 1.4 Set up associations
-    - [Model] has_many [related]
-    - [Model] belongs_to [parent]
-  - [ ] 1.5 Ensure database layer tests pass
-    - Run ONLY the 2-8 tests written in 1.1
-    - Verify migrations run successfully
-    - Do NOT run the entire test suite at this stage
+**Reference patterns:**
+- [@app/controllers/posts_controller.rb:15-30] - existing create pattern
+- [commit:abc123] - similar form submission flow
+
+- [x] 1.1 Write integration test for happy path
+- [x] 1.2 Run test, verify expected failure
+  - `Expected post page to have comment form, but no form found`
+- [x] 1.3 `No route matches POST /comments` → Added route
+- [x] 1.4 `uninitialized constant CommentsController` → Created controller
+- [x] 1.5 `The action 'create' could not be found` → Added create action
+- [x] 1.6 `undefined method 'comments' for Post` → Added has_many association
+- [x] 1.7 `Couldn't find Comment without an ID` → Created Comment model
+- [x] 1.8 `expected 200 got 422` → Added permitted params
+- [x] 1.9 `Expected page to have "Test comment" but not found` → Added comment to view
+- [x] 1.10 Success ✅
+- [x] 1.11 Commit working slice
+- [ ] 1.12 Add narrower tests for edge cases (if needed)
 
 **Acceptance Criteria:**
-
-- The 2-8 tests written in 1.1 pass
-- Models pass validation tests
-- Migrations run successfully
-- Associations work correctly
-
-### API Layer
-
-#### Task Group 2: API Endpoints
-
-**Dependencies:** Task Group 1
-
-- [ ] 2.0 Complete API layer
-  - [ ] 2.1 Write 2-8 focused tests for API endpoints
-    - Limit to 2-8 highly focused tests maximum
-    - Test only critical controller actions (e.g., primary CRUD operation, auth
-      check, key error case)
-    - Skip exhaustive testing of all actions and scenarios
-  - [ ] 2.2 Create [resource] controller
-    - Actions: index, show, create, update, destroy
-    - Follow pattern from: [existing controller]
-  - [ ] 2.3 Implement authentication/authorization
-    - Use existing auth pattern
-    - Add permission checks
-  - [ ] 2.4 Add API response formatting
-    - JSON responses
-    - Error handling
-    - Status codes
-  - [ ] 2.5 Ensure API layer tests pass
-    - Run ONLY the 2-8 tests written in 2.1
-    - Verify critical CRUD operations work
-    - Do NOT run the entire test suite at this stage
-
-**Acceptance Criteria:**
-
-- The 2-8 tests written in 2.1 pass
-- All CRUD operations work
-- Proper authorization enforced
-- Consistent response format
-
-### Frontend Components
-
-#### Task Group 3: UI Design
-
-**Dependencies:** Task Group 2
-
-- [ ] 3.0 Complete UI components
-  - [ ] 3.1 Write 2-8 focused tests for UI components
-    - Limit to 2-8 highly focused tests maximum
-    - Test only critical component behaviors (e.g., primary user interaction,
-      key form submission, main rendering case)
-    - Skip exhaustive testing of all component states and interactions
-  - [ ] 3.2 Create [Component] component
-    - Reuse: [existing component] as base
-    - Props: [list]
-    - State: [list]
-  - [ ] 3.3 Implement [Feature] form
-    - Fields: [list]
-    - Validation: client-side
-    - Submit handling
-  - [ ] 3.4 Build [View] page
-    - Layout: [description]
-    - Components: [list]
-    - Match mockup: `planning/visuals/[file]`
-  - [ ] 3.5 Apply base styles
-    - Follow existing design system
-    - Use variables from: [style file]
-  - [ ] 3.6 Implement responsive design
-    - Mobile: 320px - 768px
-    - Tablet: 768px - 1024px
-    - Desktop: 1024px+
-  - [ ] 3.7 Add interactions and animations
-    - Hover states
-    - Transitions
-    - Loading states
-  - [ ] 3.8 Ensure UI component tests pass
-    - Run ONLY the 2-8 tests written in 3.1
-    - Verify critical component behaviors work
-    - Do NOT run the entire test suite at this stage
-
-**Acceptance Criteria:**
-
-- The 2-8 tests written in 3.1 pass
-- Components render correctly
-- Forms validate and submit
-- Matches visual design
-
-### Testing
-
-#### Task Group 4: Test Review & Gap Analysis
-
-**Dependencies:** Task Groups 1-3
-
-- [ ] 4.0 Review existing tests and fill critical gaps only
-  - [ ] 4.1 Review tests from Task Groups 1-3
-    - Review the 2-8 tests written by database-engineer (Task 1.1)
-    - Review the 2-8 tests written by api-engineer (Task 2.1)
-    - Review the 2-8 tests written by ui-designer (Task 3.1)
-    - Total existing tests: approximately 6-24 tests
-  - [ ] 4.2 Analyze test coverage gaps for THIS feature only
-    - Identify critical user workflows that lack test coverage
-    - Focus ONLY on gaps related to this spec's feature requirements
-    - Do NOT assess entire application test coverage
-    - Prioritize end-to-end workflows over unit test gaps
-  - [ ] 4.3 Write up to 10 additional strategic tests maximum
-    - Add maximum of 10 new tests to fill identified critical gaps
-    - Focus on integration points and end-to-end workflows
-    - Do NOT write comprehensive coverage for all scenarios
-    - Skip edge cases, performance tests, and accessibility tests unless
-      business-critical
-  - [ ] 4.4 Run feature-specific tests only
-    - Run ONLY tests related to this spec's feature (tests from 1.1, 2.1, 3.1,
-      and 4.3)
-    - Expected total: approximately 16-34 tests maximum
-    - Do NOT run the entire application test suite
-    - Verify critical workflows pass
-
-**Acceptance Criteria:**
-
-- All feature-specific tests pass (approximately 16-34 tests total)
-- Critical user workflows for this feature are covered
-- No more than 10 additional tests added when filling in testing gaps
-- Testing focused exclusively on this spec's feature requirements
-
-## Execution Order
-
-Recommended implementation sequence:
-
-1. Database Layer (Task Group 1)
-2. API Layer (Task Group 2)
-3. Frontend Design (Task Group 3)
-4. Test Review & Gap Analysis (Task Group 4)
+- User can submit a comment from the post page
+- Comment appears in the comments list
 ```
 
-**Note**: Adapt this structure based on the actual feature requirements. Some
-features may need:
+## Red-Green Cycle Guidance
 
-- Different task groups (e.g., email notifications, payment processing, data
-  migration)
-- Different execution order based on dependencies
-- More or fewer sub-tasks per group
+The red-green cycle is the core of implementation:
+
+1. **Run the test** - observe the failure
+2. **Make the smallest possible change** to address that specific failure
+3. **Run the test again** - observe if failure changed or test passes
+4. **Document the iteration**: `[failure reason]` → `[change made]`
+5. **Update the task list** with this iteration as a completed task
+6. **Repeat** until test passes, then document `Success ✅`
+
+**Important**: Each slice may take MANY iterations - this is expected and
+normal. However, if you're stuck on the **same failure** for 5-10 cycles,
+stop and reassess your approach. You may be:
+- Missing a prerequisite
+- Misunderstanding the failure
+- Fighting the existing architecture
+
+Step back, re-read the error, check existing patterns, and consider a
+different approach.
 
 ## Important Constraints
 
-- **Create tasks that are specific and verifiable**
-- **Group related tasks:** For example, group back-end engineering tasks
-  together and front-end UI tasks together.
-- **Limit test writing during development**:
-  - Each task group (1-3) should write 2-8 focused tests maximum
-  - Tests should cover only critical behaviors, not exhaustive coverage
-  - Test verification should run ONLY the newly written tests, not the entire
-    suite
-  - If there is a dedicated test coverage group for filling in gaps in test
-    coverage, this group should add only a maximum of 10 additional tests IF
-    NECESSARY to fill critical gaps
-- **Use a focused test-driven approach** where each task group starts with
-  writing 2-8 tests (x.1 sub-task) and ends with running ONLY those tests (final
-  sub-task)
-- **Include acceptance criteria** for each task group
-- **Reference visual assets** if visuals are available
+- **Outside-in testing**: Start with a broad integration test that defines the
+  happy path. The test failure tells you what to build next.
+- **Document as you go**: Update tasks.md with each red-green iteration so
+  there's a clear record of what was done.
+- **Each slice is independently testable**: You can demo/verify each slice
+  before moving to the next.
+- **Reference existing patterns**: Every slice should note what existing code
+  or commits to follow.
+- **Slice size**: Each slice should be completable in roughly 1-4 hours of
+  focused work. If larger, break it down further.
+- **The first slice is the hardest**: It establishes patterns. Subsequent
+  slices build on it and go faster.
+- **Commit after each slice**: Keep the codebase in a working state.
