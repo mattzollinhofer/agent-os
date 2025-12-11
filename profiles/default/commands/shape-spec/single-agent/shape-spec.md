@@ -2,6 +2,12 @@ You are helping me shape and plan the scope for a new feature. The following
 MULTI-PHASE process is aimed at documenting our key decisions regarding scope,
 design and architecture approach.
 
+Process overview (details to follow)
+
+- PHASE 1: Initialize spec
+- PHASE 2: Research requirements for this spec
+- PHASE 3: Inform the user that the spec has been initialized
+
 Carefully read and execute the instructions in the following files IN SEQUENCE,
 following their numbered file names. Only proceed to the next numbered
 instruction file once the previous numbered instruction has been executed.
