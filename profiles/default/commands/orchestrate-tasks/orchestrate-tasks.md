@@ -1,8 +1,8 @@
 # Process for Orchestrating a Spec's Implementation
 
 Now that we have a spec and tasks list ready for implementation, we will proceed
-with orchestrating implementation of each task group by a dedicated agent using
-the following MULTI-PHASE process.
+with orchestrating implementation of each slice by a dedicated agent using the
+following MULTI-PHASE process.
 
 Follow each of these phases and their individual workflows IN SEQUENCE:
 
@@ -25,153 +25,150 @@ If you don't have one yet, then run any of these commands first:
 /create-tasks
 ```
 
-### NEXT: Create orchestration.yml to serve as a roadmap for orchestration of task groups
+### NEXT: Create orchestration.yml to serve as a roadmap for orchestration of slices
 
 In this spec's folder, create this file:
 `agent-os/specs/[this-spec]/orchestration.yml`.
 
-Populate this file with with the names of each task group found in this spec's
+Populate this file with with the names of each slice found in this spec's
 `tasks.md` and use this EXACT structure for the content of `orchestration.yml`:
 
 ```yaml
-task_groups:
-  - name: [task-group-name]
-  - name: [task-group-name]
-  - name: [task-group-name]
-  # Repeat for each task group found in tasks.md
+slices:
+  - name: [slice-name]
+  - name: [slice-name]
+  - name: [slice-name]
+  # Repeat for each slice found in tasks.md
 ```
 
 {{IF use_claude_code_subagents}}
 
-### NEXT: Ask user to assign subagents to each task group
+### NEXT: Ask user to assign subagents to each slice
 
-Next we must determine which subagents should be assigned to which task groups.
-Ask the user to provide this info using the following request to user and WAIT
-for user's response:
+Next we must determine which subagents should be assigned to which slices. Ask
+the user to provide this info using the following request to user and WAIT for
+user's response:
 
 ```
-Please specify the name of each subagent to be assigned to each task group:
+Please specify the name of each subagent to be assigned to each slice:
 
-1. [task-group-name]
-2. [task-group-name]
-3. [task-group-name]
-[repeat for each task-group you've added to orchestration.yml]
+1. [slice-name]
+2. [slice-name]
+3. [slice-name]
+[repeat for each slice you've added to orchestration.yml]
 
-Simply respond with the subagent names and corresponding task group number and I'll update orchestration.yml accordingly.
+Simply respond with the subagent names and corresponding slice number and I'll update orchestration.yml accordingly.
 ```
 
 Using the user's responses, update `orchestration.yml` to specify those subagent
 names. `orchestration.yml` should end up looking like this:
 
 ```yaml
-task_groups:
-  - name: [task-group-name]
+slices:
+  - name: [slice-name]
     claude_code_subagent: [subagent-name]
-  - name: [task-group-name]
+  - name: [slice-name]
     claude_code_subagent: [subagent-name]
-  - name: [task-group-name]
+  - name: [slice-name]
     claude_code_subagent: [subagent-name]
-  # Repeat for each task group found in tasks.md
+  # Repeat for each slice found in tasks.md
 ```
 
 For example, after this step, the `orchestration.yml` file might look like this
 (exact names will vary):
 
 ```yaml
-task_groups:
-  - name: authentication-system
-    claude_code_subagent: backend-specialist
-  - name: user-dashboard
-    claude_code_subagent: frontend-specialist
-  - name: api-endpoints
-    claude_code_subagent: backend-specialist
+slices:
+  - name: user-can-create-comment
+    claude_code_subagent: implementer
+  - name: user-can-edit-comment
+    claude_code_subagent: implementer
+  - name: user-can-delete-comment
+    claude_code_subagent: implementer
 ```
 
 {{ENDIF use_claude_code_subagents}}
 
 {{UNLESS standards_as_claude_code_skills}}
 
-### NEXT: Ask user to assign standards to each task group
+### NEXT: Ask user to assign standards to each slice
 
 Next we must determine which standards should guide the implementation of each
-task group. Ask the user to provide this info using the following request to
-user and WAIT for user's response:
+slice. Ask the user to provide this info using the following request to user and
+WAIT for user's response:
 
 ```
-Please specify the standard(s) that should be used to guide the implementation of each task group:
+Please specify the standard(s) that should be used to guide the implementation of each slice:
 
-1. [task-group-name]
-2. [task-group-name]
-3. [task-group-name]
-[repeat for each task-group you've added to orchestration.yml]
+1. [slice-name]
+2. [slice-name]
+3. [slice-name]
+[repeat for each slice you've added to orchestration.yml]
 
-For each task group number, you can specify any combination of the following:
+For each slice number, you can specify any combination of the following:
 
 "all" to include all of your standards
 "global/*" to include all of the files inside of standards/global
 "frontend/css.md" to include the css.md standard file
-"none" to include no standards for this task group.
+"none" to include no standards for this slice.
 ```
 
 Using the user's responses, update `orchestration.yml` to specify those
-standards for each task group. `orchestration.yml` should end up having AT LEAST
-the following information added to it:
+standards for each slice. `orchestration.yml` should end up having AT LEAST the
+following information added to it:
 
 ```yaml
-task_groups:
-  - name: [task-group-name]
+slices:
+  - name: [slice-name]
     standards:
-      - [users' 1st response for this task group]
-      - [users' 2nd response for this task group]
-      - [users' 3rd response for this task group]
-      # Repeat for all standards that the user specified for this task group
-  - name: [task-group-name]
+      - [users' 1st response for this slice]
+      - [users' 2nd response for this slice]
+      - [users' 3rd response for this slice]
+      # Repeat for all standards that the user specified for this slice
+  - name: [slice-name]
     standards:
-      - [users' 1st response for this task group]
-      - [users' 2nd response for this task group]
-      # Repeat for all standards that the user specified for this task group
-  # Repeat for each task group found in tasks.md
+      - [users' 1st response for this slice]
+      - [users' 2nd response for this slice]
+      # Repeat for all standards that the user specified for this slice
+  # Repeat for each slice found in tasks.md
 ```
 
 For example, after this step, the `orchestration.yml` file might look like this
 (exact names will vary):
 
 ```yaml
-task_groups:
-  - name: authentication-system
+slices:
+  - name: user-can-create-comment
     standards:
       - all
-  - name: user-dashboard
+  - name: user-can-edit-comment
     standards:
       - global/*
       - frontend/components.md
-      - frontend/css.md
-  - name: task-group-with-no-standards
-  - name: api-endpoints
+      - testing/test-writing.md
+  - name: user-can-delete-comment
     standards:
-      - backend/*
-      - global/error-handling.md
+      - all
 ```
 
 Note: If the `use_claude_code_subagents` flag is enabled, the final
 `orchestration.yml` would include BOTH `claude_code_subagent` assignments AND
-`standards` for each task group. {{ENDUNLESS standards_as_claude_code_skills}}
+`standards` for each slice. {{ENDUNLESS standards_as_claude_code_skills}}
 
 {{IF use_claude_code_subagents}}
 
-### NEXT: Delegate task groups implementations to assigned subagents
+### NEXT: Delegate slice implementations to assigned subagents
 
-Loop through each task group in `agent-os/specs/[this-spec]/tasks.md` and
-delegate its implementation to the assigned subagent specified in
-`orchestration.yml`.
+Loop through each slice in `agent-os/specs/[this-spec]/tasks.md` and delegate
+its implementation to the assigned subagent specified in `orchestration.yml`.
 
 For each delegation, provide the subagent with:
 
-- The task group (including the parent task and all sub-tasks)
+- The slice (including the slice description and all sub-tasks)
 - The spec file: `agent-os/specs/[this-spec]/spec.md`
 - Instruct subagent to:
-  - Perform their implementation
-  - Check off the task and sub-task(s) in `agent-os/specs/[this-spec]/tasks.md`
+  - Perform their implementation following the red-green cycle
+  - Check off the tasks in `agent-os/specs/[this-spec]/tasks.md`
     {{UNLESS standards_as_claude_code_skills}}
 
 In addition to the above items, also instruct the subagent to closely adhere to
@@ -180,7 +177,7 @@ the list of file references to give to the subagent, follow these instructions:
 
 {{workflows/implementation/compile-implementation-standards}}
 
-Provide all of the above to the subagent when delegating tasks for it to
+Provide all of the above to the subagent when delegating slices for it to
 implement. {{ENDUNLESS standards_as_claude_code_skills}}
 {{ENDIF use_claude_code_subagents}}
 
@@ -189,23 +186,23 @@ implement. {{ENDUNLESS standards_as_claude_code_skills}}
 ### NEXT: Generate prompts
 
 Now we must generate an ordered series of prompt texts, which will be used to
-direct the implementation of each task group listed in `orchestration.yml`.
+direct the implementation of each slice listed in `orchestration.yml`.
 
 Follow these steps to generate this spec's ordered series of prompts texts, each
 in its own .md file located in
 `agent-os/specs/[this-spec]/implementation/prompts/`.
 
-LOOP through EACH task group in `agent-os/specs/[this-spec]/tasks.md` and for
-each, use the following workflow to generate a markdown file with prompt text
-for each task group:
+LOOP through EACH slice in `agent-os/specs/[this-spec]/tasks.md` and for each,
+use the following workflow to generate a markdown file with prompt text for each
+slice:
 
 #### Step 1. Create the prompt markdown file
 
 Create the prompt markdown file using this naming convention:
-`agent-os/specs/[this-spec]/implementation/prompts/[task-group-number]-[task-group-title].md`.
+`agent-os/specs/[this-spec]/implementation/prompts/[slice-number]-[slice-title].md`.
 
-For example, if the 3rd task group in tasks.md is named "Comment System" then
-create `3-comment-system.md`.
+For example, if the 3rd slice in tasks.md is named "User can delete comment"
+then create `3-user-can-delete-comment.md`.
 
 #### Step 2. Populate the prompt file
 
@@ -215,8 +212,7 @@ template.
 ##### Bracket content replacements
 
 In the content template below, replace "[spec-title]" and "[this-spec]" with the
-current spec's title, and "[task-group-number]" with the current task group's
-number.
+current spec's title, and "[slice-number]" with the current slice's number.
 
 {{UNLESS standards_as_claude_code_skills}} To replace
 "[orchestrated-standards]", use the following workflow:
@@ -227,18 +223,17 @@ number.
 #### Prompt file content template:
 
 ```markdown
-We're continuing our implementation of [spec-title] by implementing task group
-number [task-group-number]:
+We're continuing our implementation of [spec-title] by implementing slice
+[slice-number]:
 
-## Implement this task and its sub-tasks:
+## Implement this slice:
 
-[paste entire task group including parent task, all of its' sub-tasks, and
-sub-bullet points]
+[paste entire slice including description, all sub-tasks, and sub-bullet points]
 
 ## Understand the context
 
 Read @agent-os/specs/[this-spec]/spec.md to understand the context for this spec
-and where the current task fits into it.
+and where the current slice fits into it.
 
 Also read these further context and reference:
 
@@ -266,7 +261,7 @@ Output to user the following:
 ```
 Ready to begin implementation of [spec-title]!
 
-Use the following list of prompts to direct the implementation of each task group:
+Use the following list of prompts to direct the implementation of each slice:
 
 [list prompt files in order]
 

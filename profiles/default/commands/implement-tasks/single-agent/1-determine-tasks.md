@@ -1,16 +1,16 @@
-First, check if the user has already provided instructions about which task
-group(s) to implement.
+First, check if the user has already provided instructions about which slice(s)
+to implement.
 
-**If the user HAS provided instructions:** Proceed to PHASE 2 to delegate
-implementation of those specified task group(s) to the **implementer** subagent.
+**If the user HAS provided instructions:** Proceed to PHASE 2 to implement those
+specified slice(s).
 
 **If the user has NOT provided instructions:**
 
-Read `agent-os/specs/[this-spec]/tasks.md` to review the available task groups,
-then output the following message to the user and WAIT for their response:
+Read `agent-os/specs/[this-spec]/tasks.md` to review the available slices, then
+output the following message to the user and WAIT for their response:
 
 ```
-Should we proceed with implementation of all task groups in tasks.md?
+Should we proceed with implementation of all slices in tasks.md?
 
-If not, then please specify which task(s) to implement.
+If not, then please specify which slice(s) to implement.
 ```

@@ -34,7 +34,7 @@ the next step.
 Generate `agent-os/specs/[current-spec]/tasks.md`.
 
 **Key principle**: Organize tasks by **vertical slices** (user-facing
-capabilities), NOT by technical layers. Each task group should deliver something
+capabilities), NOT by technical layers. Each slice should deliver something
 complete and testable end-to-end.
 
 **Why vertical slices?**

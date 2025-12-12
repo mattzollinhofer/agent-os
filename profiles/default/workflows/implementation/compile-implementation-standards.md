@@ -5,9 +5,8 @@ should guide implementation:
 
 ##### Steps to Compile Standards List
 
-1. Find the current task group in `orchestration.yml`
-2. Check the list of `standards` specified for this task group in
-   `orchestration.yml`
+1. Find the current slice in `orchestration.yml`
+2. Check the list of `standards` specified for this slice in `orchestration.yml`
 3. Compile the list of file references to those standards, one file reference
    per line, using this logic for determining which files to include: a. If the
    value for `standards` is simply `all`, then include every single file,

@@ -9,7 +9,7 @@
    referenced
 4. **Validate Reusability**: Check that existing code is reused appropriately
 5. **Verify Limited Testing Approach**: Ensure tasks follow focused, limited
-   test writing (2-8 tests per task group)
+   test writing (2-8 tests per slice)
 6. **Document Findings**: Create verification report
 
 ## Workflow
@@ -111,15 +111,13 @@ Look for these issues:
 
 #### Check 6: Task List Detailed Validation
 
-Read `agent-os/specs/[this-spec]/tasks.md` and check each task group's tasks:
+Read `agent-os/specs/[this-spec]/tasks.md` and check each slice's tasks:
 
 1. **Test Writing Limits**: Verify test writing follows limited approach:
-   - Each implementation task group (1-3) should specify writing 2-8 focused
-     tests maximum
+   - Each slice should specify writing 2-8 focused tests maximum
    - Test verification subtasks should run ONLY the newly written tests, not
      entire suite
-   - Testing-engineer's task group should add maximum 10 additional tests if
-     necessary
+   - Final slice may add maximum 10 additional edge case tests if necessary
    - Flag if tasks call for comprehensive/exhaustive testing or running full
      test suite
 2. **Reusability References**: Tasks should note "(reuse existing: [name])"
@@ -129,7 +127,7 @@ Read `agent-os/specs/[this-spec]/tasks.md` and check each task group's tasks:
 5. **Scope**: No tasks for features not in requirements
 6. **Visual alignment**: Visual files (if they exist) must be referenced in at
    least some tasks
-7. **Task count**: Should be 3-10 tasks per task group (flag if >10 or <3)
+7. **Task count**: Should be 3-10 tasks per slice (flag if >10 or <3)
 
 #### Check 7: Reusability and Over-Engineering Check
 
@@ -218,15 +216,15 @@ referenced in requirements.md [OR issues]
 
 **Test Writing Limits:**
 
-- ✅ Task Group 1 specifies 2-8 focused tests
-- ❌ Task Group 2 calls for "comprehensive test coverage" (violates limits)
-- ⚠️ Task Group 3 doesn't specify test limits
-- ❌ Testing-engineer group plans 25 additional tests (exceeds 10 max)
+- ✅ Slice 1 specifies 2-8 focused tests
+- ❌ Slice 2 calls for "comprehensive test coverage" (violates limits)
+- ⚠️ Slice 3 doesn't specify test limits
+- ❌ Final slice plans 25 additional edge case tests (exceeds 10 max)
 - ❌ Tasks call for running entire test suite (should run only new tests) [OR if
   compliant:]
-- ✅ All task groups specify 2-8 focused tests maximum
+- ✅ All slices specify 2-8 focused tests maximum
 - ✅ Test verification limited to newly written tests only
-- ✅ Testing-engineer adds maximum 10 tests
+- ✅ Final slice adds maximum 10 edge case tests
 
 **Reusability References:**
 
@@ -313,7 +311,7 @@ Specification verification complete!
 ✅ Verified requirements accuracy
 ✅ Checked structural integrity
 ✅ Validated specification alignment
-✅ Verified test writing limits (2-8 tests per task group, ~16-34 total)
+✅ Verified test writing limits (2-8 tests per slice)
 [If visuals] ✅ Analyzed [X] visual assets
 ⚠️ Reusability check: [Y issues found]
 
@@ -338,8 +336,8 @@ See agent-os/specs/[this-spec]/verification/spec-verification.md for full detail
   NOT search and explore the codebase yourself.
 - Verify test writing limits strictly: Flag any tasks that call for
   comprehensive testing, exhaustive coverage, or running full test suites
-- Expected test counts: Implementation task groups should write 2-8 tests each,
-  testing-engineer adds maximum 10, total ~16-34 tests per feature
+- Expected test counts: Each slice should write 2-8 focused tests, final slice
+  may add maximum 10 edge case tests
 - Don't add new requirements or specifications
 - Focus on alignment and accuracy, not style
 - Be specific about any issues found
