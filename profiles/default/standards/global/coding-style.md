@@ -17,3 +17,6 @@
   backward compatibility.
 - **DRY Principle**: Avoid duplication by extracting common logic into reusable
   functions or modules
+- **No Unnecessary Changes**: Only make changes necessary to complete the current task.
+  Don't refactor unrelated code, update whitespace, "fix" something you noticed.
+  If you see something worth improving, note it for later rather than addressing it now.
