@@ -37,6 +37,7 @@ Delegate to the **implementer** subagent to implement the specified slice(s):
 
 Provide to the subagent:
 
+- How to create tasks: {{workflows/implementation/create-tasks-list}}
 - The specific slice(s) from `agent-os/specs/[this-spec]/tasks.md` including the
   slice description, all sub-tasks, and any sub-bullet points
 - The path to this spec's documentation: `agent-os/specs/[this-spec]/spec.md`
