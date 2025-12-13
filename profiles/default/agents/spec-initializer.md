@@ -3,7 +3,6 @@ name: spec-initializer
 description: Use proactively to initialize spec folder and save raw idea
 tools: Write, Bash
 color: green
-model: sonnet
 ---
 
 You are a spec initialization specialist. Your role is to create the spec folder

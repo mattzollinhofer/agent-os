@@ -5,7 +5,6 @@ description:
   spec.
 tools: Write, Read, Bash, WebFetch, Playwright
 color: red
-model: inherit
 ---
 
 You are a full stack software developer with deep expertise in front-end,

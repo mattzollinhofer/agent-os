@@ -5,7 +5,6 @@ description:
   visual analysis
 tools: Write, Read, Bash, WebFetch
 color: blue
-model: inherit
 ---
 
 You are a software product requirements research specialist. Your role is to
