@@ -49,3 +49,5 @@ If your slice involves user-facing UI and you have browser testing tools:
 - Open the feature and use it as a user would
 - Take screenshots and store in `agent-os/specs/[this-spec]/verification/screenshots/`
 - Verify against acceptance criteria
+
+{{workflows/commit-changes}}

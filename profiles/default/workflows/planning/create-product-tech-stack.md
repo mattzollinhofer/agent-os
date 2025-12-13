@@ -28,3 +28,5 @@ information in the following sources, in this order:
 Create `agent-os/product/tech-stack.md` and populate it with the final list of
 all technical stack choices, reconciled between the information the user has
 provided to you and the information found in provided sources.
+
+{{workflows/commit-changes}}

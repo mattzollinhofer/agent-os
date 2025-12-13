@@ -88,3 +88,5 @@ Ready for requirements research phase.
 - Pass the exact spec path back to the orchestrator
 - Follow folder structure exactly
 - Implementation folder should be empty, for now
+
+{{workflows/commit-changes}}

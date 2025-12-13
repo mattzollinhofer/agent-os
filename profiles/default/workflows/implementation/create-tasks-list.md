@@ -228,3 +228,5 @@ For non-feature work (infrastructure, config, tooling, etc.), use this pattern:
   slices build on it and go faster.
 - **Commit after each section**: Keep the codebase in a working state. Every
   section/slice ends with a commit of ONLY the changes from that section.
+
+{{workflows/commit-changes}}

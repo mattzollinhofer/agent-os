@@ -315,3 +315,5 @@ Ready for specification creation.
 - Document all visual findings including fidelity level
 - Document paths to similar features for spec-writer to reference
 - OUTPUT questions and STOP to wait for orchestrator to relay responses
+
+{{workflows/commit-changes}}
