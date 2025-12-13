@@ -183,6 +183,35 @@ stop and reassess your approach. You may be:
 Step back, re-read the error, check existing patterns, and consider a
 different approach.
 
+## Commit After Every Section (Required)
+
+**Every section must end with a commit task.** This applies to ALL work types:
+feature slices, infrastructure, refactoring, documentation, etc.
+
+The commit task should:
+1. Only include changes made in that section
+2. Follow our global standards for commit messages
+3. Leave the codebase in a working state
+
+For non-feature work (infrastructure, config, tooling, etc.), use this pattern:
+
+```markdown
+### Section N: [Description of Work]
+
+**What this delivers:** [One sentence describing the outcome]
+
+- [ ] N.1 [First task]
+- [ ] N.2 [Second task]
+- [ ] N.3 ...
+- [ ] N.X Commit section changes only (not unrelated changes)
+```
+
+**Why commit after each section?**
+- Creates clear checkpoints for review
+- Makes it easy to revert if something goes wrong
+- Keeps commits focused and atomic
+- Ensures changes are saved before moving on
+
 ## Important Constraints
 
 - **Outside-in testing**: Start with a broad integration test that defines the
@@ -197,4 +226,5 @@ different approach.
   focused work. If larger, break it down further.
 - **The first slice is the hardest**: It establishes patterns. Subsequent
   slices build on it and go faster.
-- **Commit after each slice**: Keep the codebase in a working state.
+- **Commit after each section**: Keep the codebase in a working state. Every
+  section/slice ends with a commit of ONLY the changes from that section.
