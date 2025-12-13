@@ -14,3 +14,4 @@
   migration does
 - **Version Control**: Always commit migrations to version control and never
   modify existing migrations after deployment
+- **Strong Migrations**: Use strong_migrations as a guide.
